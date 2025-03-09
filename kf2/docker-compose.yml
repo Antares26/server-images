@@ -1,0 +1,15 @@
+services:
+  kf2_server:
+    build: .
+    container_name: kf2_server
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${SERVER_GAME_PORT}:${SERVER_GAME_PORT}/udp"
+      - "${SERVER_QUERY_PORT}:${SERVER_QUERY_PORT}/udp"
+      - "${WEBSERVER_PORT}:${WEBSERVER_PORT}/tcp"
+      - "20560:20560/udp"
+      - "123:123/udp"
+    tty: true
+    stdin_open: true

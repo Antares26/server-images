@@ -1,0 +1,22 @@
+# THIS FILE IS HERE FOR REFERENCE IF YOU DECIDE NOT TO USE DOCKER
+[Unit]
+Description=Killing Floor 2 Dedicated Server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=steam
+Group=steam
+ExecStart=/srv/kf2/Binaries/Win64/KFGameSteamServer.bin.x86_64 KF-CarillonHamlet?Game=KFGameContent.KFGameInfo_Endless?SeasonalSkinsIndex=4 -Port=6213 -QueryPort=26015
+# ExecStop=/bin/kill $MAINPID
+Restart=on-failure
+RestartSec=30
+# WorkingDirectory=/home/steam
+#LimitNOFILE=100000
+ProtectSystem=full
+ProtectHome=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+
